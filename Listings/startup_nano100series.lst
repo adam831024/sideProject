@@ -379,7 +379,7 @@ ARM Macro Assembler    Page 6
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0 --apcs=interw
 ork --depend=.\objects\startup_nano100series.d -o.\objects\startup_nano100serie
-s.o -IC:\Users\vincentadam\Desktop\siedProject\RTE -IC:\Keil_v5\ARM\PACK\ARM\CM
+s.o -IC:\Users\vincentadam\Desktop\sideProject\RTE -IC:\Keil_v5\ARM\PACK\ARM\CM
 SIS\4.3.0\CMSIS\Include -IC:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\
 NANO100BN\Driver -IC:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100
 BN\Include --predefine="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 516"

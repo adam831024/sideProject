@@ -1,0 +1,31 @@
+1. ..FreeRTOSv202112.00\FreeRTOS\Source: All the needed source file, copy whole "Source" to workplace "src"
+2. ..FreeRTOSv202112.00\FreeRTOS\Source\include: All the needed header file, copy whole "include"to workplace "inc".
+3. ..FreeRTOSv202112.00\FreeRTOS\Source\portable: Copy MemMang and RVDS to workplace "port".
+4. ..FreeRTOSv202112.00\FreeRTOS\Demo\CORTEX_STM32F103_Keil: Copy FreeRTOSConfig.h to "..workplace\inc"
+5. add header file and source file in Keil IDE, "Options for Target\ C/C++\ Include Paths"
+6. modify FreeRTOSconfig.h
+
+if xTaskGetCurrentTaskHandle error, modify INCLUDE_xTaskGetCurrentTaskHandle as 1
+
+workplace file tree:
+
+workplace
+│
+├─src
+│
+├─inc
+│
+└─FreeRTOS
+     ├─inc
+     ├─port
+     │  ├─MemMang
+     │  └─RVDS
+     │      ├─ARM7_LPC21xx
+     │      ├─ARM_CA9
+     │      ├─ARM_CM0
+     │      ├─ARM_CM3
+     │      ├─ARM_CM4F
+     │      ├─ARM_CM4_MPU
+     │      └─ARM_CM7
+     │          └─r0p1
+     └─src
