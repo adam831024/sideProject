@@ -15,7 +15,11 @@
 #include "uart.h"
 
 /*Free-RTOS include*/
-
+#include "FreeRTOS.h"
+#include "FreeRTOSConfig.h"
+#include "semphr.h"
+#include "task.h"
+#include "timers.h"
 
 /*Application include*/
 #include "osUart.h"
