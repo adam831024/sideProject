@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: £gVision V5.16.0.0
 Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: 1 vincentadam, 1, LIC=----
+License Information: aa aa, aa, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.16.0.0
@@ -21,39 +21,44 @@ Target DLL:      Segger\JL2CM3.dll V2.99.15.2
 Dialog DLL:      TARMCM1.DLL V1.9.0.0
  
 <h2>Project:</h2>
-C:\Users\vincentadam\Desktop\sideProject\sideProject.uvprojx
+C:\Users\vince\Desktop\sideProject\sideProject.uvprojx
 Project File Date:  09/24/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 (build 20)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Target 1'
-compiling croutine.c...
-compiling list.c...
-compiling event_groups.c...
-compiling queue.c...
-compiling timers.c...
-compiling stream_buffer.c...
 compiling osUtility.c...
-compiling osUart.c...
-compiling tasks.c...
+src\osUtility.c(131): warning:  #223-D: function "pvPortMalloc" declared implicitly
+      void *memory = (void *)pvPortMalloc(size);
+src\osUtility.c(132): warning:  #223-D: function "memset" declared implicitly
+      memset(memory, 0, size);
+src\osUtility.c(146): warning:  #223-D: function "vPortFree" declared implicitly
+          vPortFree(ptr);
+src\osUtility.c: 3 warnings, 0 errors
 compiling main.c...
-src\main.c(84): warning:  #111-D: statement is unreachable
-  	return 0;
-src\main.c: 1 warning, 0 errors
-compiling heap_4.c...
+compiling osUart.c...
+compiling fifo.c...
+compiling croutine.c...
+compiling event_groups.c...
+compiling list.c...
+compiling queue.c...
+compiling stream_buffer.c...
+compiling timers.c...
+compiling tasks.c...
 compiling port.c...
+compiling heap_4.c...
 compiling clk.c...
-compiling timer.c...
-compiling gpio.c...
-assembling startup_Nano100Series.s...
-compiling wdt.c...
 compiling sys.c...
+compiling gpio.c...
+compiling timer.c...
 compiling uart.c...
+compiling wdt.c...
+assembling startup_Nano100Series.s...
 compiling retarget.c...
 compiling system_Nano100Series.c...
 linking...
-Program Size: Code=3076 RO-data=312 RW-data=24 ZI-data=2656  
-".\Objects\sideProject.axf" - 0 Error(s), 1 Warning(s).
+Program Size: Code=12444 RO-data=312 RW-data=156 ZI-data=11076  
+".\Objects\sideProject.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -70,13 +75,13 @@ Package Vendor: Nuvoton
    * Component: Startup Version: 3.01.000
    * Component: CLK Version: 3.01.000
    * Component: GPIO Version: 3.01.000
-   * Component: UART Version: 3.01.000
-   * Component: SYS Version: 3.01.000
-   * Component: Timer Version: 3.01.000
    * Component: WDT Version: 3.01.000
+   * Component: Timer Version: 3.01.000
+   * Component: SYS Version: 3.01.000
+   * Component: UART Version: 3.01.000
 
 <h2>Collection of Component include folders:</h2>
-  C:\Users\vincentadam\Desktop\sideProject\RTE
+  C:\Users\vince\Desktop\sideProject\RTE
   C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include
   C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Driver
   C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Include
@@ -87,34 +92,34 @@ Package Vendor: Nuvoton
 
    * Component: Nuvoton::Device:Startup:3.01.000
       Source file:   Device\NANO100BN\Driver\retarget.c
-      Source file:   Device\NANO100BN\Source\system_Nano100Series.c
       Include file:  Device\NANO100BN\Include\Nano100Series.h
       Source file:   Device\NANO100BN\Source\ARM\startup_Nano100Series.s
+      Source file:   Device\NANO100BN\Source\system_Nano100Series.c
 
    * Component: Nuvoton::Device:Driver:CLK:3.01.000
-      Include file:  Device\NANO100BN\Driver\clk.h
       Source file:   Device\NANO100BN\Driver\clk.c
+      Include file:  Device\NANO100BN\Driver\clk.h
 
    * Component: Nuvoton::Device:Driver:GPIO:3.01.000
-      Source file:   Device\NANO100BN\Driver\gpio.c
       Include file:  Device\NANO100BN\Driver\gpio.h
+      Source file:   Device\NANO100BN\Driver\gpio.c
 
-   * Component: Nuvoton::Device:Driver:UART:3.01.000
-      Include file:  Device\NANO100BN\Driver\uart.h
-      Source file:   Device\NANO100BN\Driver\uart.c
-
-   * Component: Nuvoton::Device:Driver:SYS:3.01.000
-      Include file:  Device\NANO100BN\Driver\sys.h
-      Source file:   Device\NANO100BN\Driver\sys.c
+   * Component: Nuvoton::Device:Driver:WDT:3.01.000
+      Source file:   Device\NANO100BN\Driver\wdt.c
+      Include file:  Device\NANO100BN\Driver\wdt.h
 
    * Component: Nuvoton::Device:Driver:Timer:3.01.000
       Include file:  Device\NANO100BN\Driver\timer.h
       Source file:   Device\NANO100BN\Driver\timer.c
 
-   * Component: Nuvoton::Device:Driver:WDT:3.01.000
-      Source file:   Device\NANO100BN\Driver\wdt.c
-      Include file:  Device\NANO100BN\Driver\wdt.h
-Build Time Elapsed:  00:00:02
+   * Component: Nuvoton::Device:Driver:SYS:3.01.000
+      Source file:   Device\NANO100BN\Driver\sys.c
+      Include file:  Device\NANO100BN\Driver\sys.h
+
+   * Component: Nuvoton::Device:Driver:UART:3.01.000
+      Include file:  Device\NANO100BN\Driver\uart.h
+      Source file:   Device\NANO100BN\Driver\uart.c
+Build Time Elapsed:  00:00:06
 </pre>
 </body>
 </html>

@@ -40,8 +40,6 @@
 #if 0
 static uint8_t fac_us = 0;
 static uint16_t fac_ms = 0;
-#else
-volatile uint32_t msTicks = 0;
 #endif
 /******************************************************************************
  * Function Prototypes
@@ -103,6 +101,26 @@ void delayMs(uint16_t ms)
     SysTick->VAL = 0x00;
 }
 /******************************************************************************
+ * DESCRIPTION: 
+ *      send stack task data to another task
+ * @param[in] src
+ *      source task no.
+ * @param[in] dest
+ *      destination task no.
+ * @param[in] pData
+ *      data pointer
+ * RETURNS: TRUE/FALSE 
+*******************************************************************************/
+bool osMessageSend(taskType_t src, taskType_t dest, void *pData)
+{
+    taskData_t *tBuf = (taskData_t *)osMalloc(sizeof(taskData_t));
+    tBuf->src = src;
+    tBuf->dest = dest;
+    tBuf->pData = pData;
+    return xQueueSendToBack(stackQueueHandle, tBuf, 0);
+}
+#endif
+/******************************************************************************
  * DESCRIPTION: malloc
  * @param[in] size
  *      malloc size
@@ -128,45 +146,4 @@ void osFree(void *ptr)
         vPortFree(ptr);
     }
 }
-/******************************************************************************
- * DESCRIPTION: 
- *      send stack task data to another task
- * @param[in] src
- *      source task no.
- * @param[in] dest
- *      destination task no.
- * @param[in] pData
- *      data pointer
- * RETURNS: TRUE/FALSE 
-*******************************************************************************/
-bool osMessageSend(taskType_t src, taskType_t dest, void *pData)
-{
-    taskData_t *tBuf = (taskData_t *)osMalloc(sizeof(taskData_t));
-    tBuf->src = src;
-    tBuf->dest = dest;
-    tBuf->pData = pData;
-    return xQueueSendToBack(stackQueueHandle, tBuf, 0);
-}
-#else
-/******************************************************************************
- * DESCRIPTION: 
- *      SysTick_Handler
- * RETURNS: void 
-*******************************************************************************/
-void SysTick_Handler(void)
-{
-    msTicks++;
-}
-/******************************************************************************
- * @brief     system delay ms
- * @param[in] ms                		milliseconds
- * @return                              void
- *******************************************************************************/
-void delay_ms(uint32_t ms)
-{
-	uint32_t t0;
-	t0 = msTicks;
-	while((msTicks-t0)<ms){}
-}
-#endif
 /*************** END OF FUNCTIONS *********************************************/

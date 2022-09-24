@@ -41,5 +41,7 @@
 .\objects\main.o: .\FreeRTOS\inc\list.h
 .\objects\main.o: .\FreeRTOS\inc\timers.h
 .\objects\main.o: .\inc\osUart.h
-.\objects\main.o: .\inc\osUtility.h
+.\objects\main.o: .\inc\fifo.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\main.o: .\inc\osUtility.h
+.\objects\main.o: .\inc\main.h
