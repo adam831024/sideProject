@@ -22,7 +22,7 @@ Dialog DLL:      TARMCM1.DLL V1.9.0.0
  
 <h2>Project:</h2>
 C:\Users\vince\Desktop\sideProject\sideProject.uvprojx
-Project File Date:  09/24/2022
+Project File Date:  09/25/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 (build 20)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
@@ -44,12 +44,12 @@ compiling list.c...
 compiling queue.c...
 compiling stream_buffer.c...
 compiling timers.c...
-compiling tasks.c...
 compiling port.c...
+compiling tasks.c...
 compiling heap_4.c...
+compiling gpio.c...
 compiling clk.c...
 compiling sys.c...
-compiling gpio.c...
 compiling timer.c...
 compiling uart.c...
 compiling wdt.c...
@@ -57,7 +57,7 @@ assembling startup_Nano100Series.s...
 compiling retarget.c...
 compiling system_Nano100Series.c...
 linking...
-Program Size: Code=12444 RO-data=312 RW-data=156 ZI-data=11076  
+Program Size: Code=12516 RO-data=312 RW-data=160 ZI-data=11072  
 ".\Objects\sideProject.axf" - 0 Error(s), 3 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -91,14 +91,14 @@ Package Vendor: Nuvoton
    * Component: ARM::CMSIS:CORE:4.1.0
 
    * Component: Nuvoton::Device:Startup:3.01.000
+      Source file:   Device\NANO100BN\Source\ARM\startup_Nano100Series.s
       Source file:   Device\NANO100BN\Driver\retarget.c
       Include file:  Device\NANO100BN\Include\Nano100Series.h
-      Source file:   Device\NANO100BN\Source\ARM\startup_Nano100Series.s
       Source file:   Device\NANO100BN\Source\system_Nano100Series.c
 
    * Component: Nuvoton::Device:Driver:CLK:3.01.000
-      Source file:   Device\NANO100BN\Driver\clk.c
       Include file:  Device\NANO100BN\Driver\clk.h
+      Source file:   Device\NANO100BN\Driver\clk.c
 
    * Component: Nuvoton::Device:Driver:GPIO:3.01.000
       Include file:  Device\NANO100BN\Driver\gpio.h
@@ -113,13 +113,13 @@ Package Vendor: Nuvoton
       Source file:   Device\NANO100BN\Driver\timer.c
 
    * Component: Nuvoton::Device:Driver:SYS:3.01.000
-      Source file:   Device\NANO100BN\Driver\sys.c
       Include file:  Device\NANO100BN\Driver\sys.h
+      Source file:   Device\NANO100BN\Driver\sys.c
 
    * Component: Nuvoton::Device:Driver:UART:3.01.000
-      Include file:  Device\NANO100BN\Driver\uart.h
       Source file:   Device\NANO100BN\Driver\uart.c
-Build Time Elapsed:  00:00:06
+      Include file:  Device\NANO100BN\Driver\uart.h
+Build Time Elapsed:  00:00:07
 </pre>
 </body>
 </html>

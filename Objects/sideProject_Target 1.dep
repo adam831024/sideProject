@@ -1,5 +1,5 @@
 Dependencies for Project 'sideProject', Target 'Target 1': (DO NOT MODIFY !)
-F (.\src\main.c)(0x632F36D8)(-c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\inc -I.\FreeRTOS\inc -I.\FreeRTOS\port\RVDS\ARM_CM0-I C:\Users\vince\Desktop\sideProject\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Driver-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Include-D__UVISION_VERSION="516" -D_RTE_-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\src\main.c)(0x633008E1)(-c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\inc -I.\FreeRTOS\inc -I.\FreeRTOS\port\RVDS\ARM_CM0-I C:\Users\vince\Desktop\sideProject\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Driver-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Include-D__UVISION_VERSION="516" -D_RTE_-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AEF5F2)
 I (C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Include\Nano100Series.h)(0x55C415C4)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm0.h)(0x55093C04)
@@ -30,7 +30,7 @@ I (C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Driver\i2s.h)(
 I (C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Driver\lcd.h)(0x55C40F10)
 I (.\FreeRTOS\inc\FreeRTOS.h)(0x632F19ED)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AEF5F2)
-I (.\inc\FreeRTOSConfig.h)(0x632F1BCC)
+I (.\inc\FreeRTOSConfig.h)(0x632FF544)
 I (.\FreeRTOS\inc\projdefs.h)(0x632F19ED)
 I (.\FreeRTOS\inc\portable.h)(0x632F19ED)
 I (.\FreeRTOS\inc\deprecated_definitions.h)(0x632F19ED)
@@ -41,12 +41,12 @@ I (.\FreeRTOS\inc\queue.h)(0x632F19ED)
 I (.\FreeRTOS\inc\task.h)(0x632F19ED)
 I (.\FreeRTOS\inc\list.h)(0x632F19ED)
 I (.\FreeRTOS\inc\timers.h)(0x632F19ED)
-I (.\inc\osUart.h)(0x632F361C)
+I (.\inc\osUart.h)(0x633005BA)
 I (.\inc\fifo.h)(0x632E7D1E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x55AEF5F2)
 I (.\inc\osUtility.h)(0x632F1F4A)
-I (.\inc\main.h)(0x632F371F)
-F (.\src\osUart.c)(0x632F3644)(-c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\inc -I.\FreeRTOS\inc -I.\FreeRTOS\port\RVDS\ARM_CM0-I C:\Users\vince\Desktop\sideProject\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Driver-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Include-D__UVISION_VERSION="516" -D_RTE_-o .\objects\osuart.o --omf_browse .\objects\osuart.crf --depend .\objects\osuart.d)
+I (.\inc\main.h)(0x63300880)
+F (.\src\osUart.c)(0x633008CD)(-c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\inc -I.\FreeRTOS\inc -I.\FreeRTOS\port\RVDS\ARM_CM0-I C:\Users\vince\Desktop\sideProject\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Driver-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Include-D__UVISION_VERSION="516" -D_RTE_-o .\objects\osuart.o --omf_browse .\objects\osuart.crf --depend .\objects\osuart.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AEF5F2)
 I (C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Include\Nano100Series.h)(0x55C415C4)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm0.h)(0x55093C04)
@@ -77,7 +77,7 @@ I (C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Driver\i2s.h)(
 I (C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Driver\lcd.h)(0x55C40F10)
 I (.\FreeRTOS\inc\FreeRTOS.h)(0x632F19ED)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AEF5F2)
-I (.\inc\FreeRTOSConfig.h)(0x632F1BCC)
+I (.\inc\FreeRTOSConfig.h)(0x632FF544)
 I (.\FreeRTOS\inc\projdefs.h)(0x632F19ED)
 I (.\FreeRTOS\inc\portable.h)(0x632F19ED)
 I (.\FreeRTOS\inc\deprecated_definitions.h)(0x632F19ED)
@@ -89,9 +89,9 @@ I (.\FreeRTOS\inc\task.h)(0x632F19ED)
 I (.\FreeRTOS\inc\list.h)(0x632F19ED)
 I (.\inc\fifo.h)(0x632E7D1E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x55AEF5F2)
-I (.\inc\main.h)(0x632F371F)
+I (.\inc\main.h)(0x63300880)
 I (.\FreeRTOS\inc\timers.h)(0x632F19ED)
-I (.\inc\osUart.h)(0x632F361C)
+I (.\inc\osUart.h)(0x633005BA)
 F (.\src\osUtility.c)(0x632F1F8F)(-c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\inc -I.\FreeRTOS\inc -I.\FreeRTOS\port\RVDS\ARM_CM0-I C:\Users\vince\Desktop\sideProject\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Driver-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Include-D__UVISION_VERSION="516" -D_RTE_-o .\objects\osutility.o --omf_browse .\objects\osutility.crf --depend .\objects\osutility.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AEF5F2)
 I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
@@ -129,13 +129,13 @@ F (.\src\fifo.c)(0x632F38C5)(-c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork
 I (.\inc\fifo.h)(0x632E7D1E)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x55AEF5F2)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AEF5F2)
-F (.\inc\osUart.h)(0x632F361C)()
+F (.\inc\osUart.h)(0x633005BA)()
 F (.\inc\osUtility.h)(0x632F1F4A)()
 F (.\FreeRTOS\src\croutine.c)(0x632F19ED)(-c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\inc -I.\FreeRTOS\inc -I.\FreeRTOS\port\RVDS\ARM_CM0-I C:\Users\vince\Desktop\sideProject\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Driver-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Include-D__UVISION_VERSION="516" -D_RTE_-o .\objects\croutine.o --omf_browse .\objects\croutine.crf --depend .\objects\croutine.d)
 I (.\FreeRTOS\inc\FreeRTOS.h)(0x632F19ED)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AEF5F2)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AEF5F2)
-I (.\inc\FreeRTOSConfig.h)(0x632F1BCC)
+I (.\inc\FreeRTOSConfig.h)(0x632FF544)
 I (.\FreeRTOS\inc\projdefs.h)(0x632F19ED)
 I (.\FreeRTOS\inc\portable.h)(0x632F19ED)
 I (.\FreeRTOS\inc\deprecated_definitions.h)(0x632F19ED)
@@ -149,7 +149,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 I (.\FreeRTOS\inc\FreeRTOS.h)(0x632F19ED)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AEF5F2)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AEF5F2)
-I (.\inc\FreeRTOSConfig.h)(0x632F1BCC)
+I (.\inc\FreeRTOSConfig.h)(0x632FF544)
 I (.\FreeRTOS\inc\projdefs.h)(0x632F19ED)
 I (.\FreeRTOS\inc\portable.h)(0x632F19ED)
 I (.\FreeRTOS\inc\deprecated_definitions.h)(0x632F19ED)
@@ -164,7 +164,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 I (.\FreeRTOS\inc\FreeRTOS.h)(0x632F19ED)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AEF5F2)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AEF5F2)
-I (.\inc\FreeRTOSConfig.h)(0x632F1BCC)
+I (.\inc\FreeRTOSConfig.h)(0x632FF544)
 I (.\FreeRTOS\inc\projdefs.h)(0x632F19ED)
 I (.\FreeRTOS\inc\portable.h)(0x632F19ED)
 I (.\FreeRTOS\inc\deprecated_definitions.h)(0x632F19ED)
@@ -177,7 +177,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x55AEF5F2)
 I (.\FreeRTOS\inc\FreeRTOS.h)(0x632F19ED)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AEF5F2)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AEF5F2)
-I (.\inc\FreeRTOSConfig.h)(0x632F1BCC)
+I (.\inc\FreeRTOSConfig.h)(0x632FF544)
 I (.\FreeRTOS\inc\projdefs.h)(0x632F19ED)
 I (.\FreeRTOS\inc\portable.h)(0x632F19ED)
 I (.\FreeRTOS\inc\deprecated_definitions.h)(0x632F19ED)
@@ -191,7 +191,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AEF5F2)
 I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x55AEF5F2)
 I (.\FreeRTOS\inc\FreeRTOS.h)(0x632F19ED)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AEF5F2)
-I (.\inc\FreeRTOSConfig.h)(0x632F1BCC)
+I (.\inc\FreeRTOSConfig.h)(0x632FF544)
 I (.\FreeRTOS\inc\projdefs.h)(0x632F19ED)
 I (.\FreeRTOS\inc\portable.h)(0x632F19ED)
 I (.\FreeRTOS\inc\deprecated_definitions.h)(0x632F19ED)
@@ -206,7 +206,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\string.h)(0x55AEF5F2)
 I (.\FreeRTOS\inc\FreeRTOS.h)(0x632F19ED)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AEF5F2)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AEF5F2)
-I (.\inc\FreeRTOSConfig.h)(0x632F1BCC)
+I (.\inc\FreeRTOSConfig.h)(0x632FF544)
 I (.\FreeRTOS\inc\projdefs.h)(0x632F19ED)
 I (.\FreeRTOS\inc\portable.h)(0x632F19ED)
 I (.\FreeRTOS\inc\deprecated_definitions.h)(0x632F19ED)
@@ -221,7 +221,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 I (.\FreeRTOS\inc\FreeRTOS.h)(0x632F19ED)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AEF5F2)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AEF5F2)
-I (.\inc\FreeRTOSConfig.h)(0x632F1BCC)
+I (.\inc\FreeRTOSConfig.h)(0x632FF544)
 I (.\FreeRTOS\inc\projdefs.h)(0x632F19ED)
 I (.\FreeRTOS\inc\portable.h)(0x632F19ED)
 I (.\FreeRTOS\inc\deprecated_definitions.h)(0x632F19ED)
@@ -235,7 +235,7 @@ F (.\FreeRTOS\port\RVDS\ARM_CM0\port.c)(0x632F19ED)(-c --cpu Cortex-M0 -D__EVAL 
 I (.\FreeRTOS\inc\FreeRTOS.h)(0x632F19ED)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AEF5F2)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AEF5F2)
-I (.\inc\FreeRTOSConfig.h)(0x632F1BCC)
+I (.\inc\FreeRTOSConfig.h)(0x632FF544)
 I (.\FreeRTOS\inc\projdefs.h)(0x632F19ED)
 I (.\FreeRTOS\inc\portable.h)(0x632F19ED)
 I (.\FreeRTOS\inc\deprecated_definitions.h)(0x632F19ED)
@@ -248,7 +248,7 @@ I (C:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x55AEF5F2)
 I (.\FreeRTOS\inc\FreeRTOS.h)(0x632F19ED)
 I (C:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x55AEF5F2)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AEF5F2)
-I (.\inc\FreeRTOSConfig.h)(0x632F1BCC)
+I (.\inc\FreeRTOSConfig.h)(0x632FF544)
 I (.\FreeRTOS\inc\projdefs.h)(0x632F19ED)
 I (.\FreeRTOS\inc\portable.h)(0x632F19ED)
 I (.\FreeRTOS\inc\deprecated_definitions.h)(0x632F19ED)

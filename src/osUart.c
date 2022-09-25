@@ -47,11 +47,16 @@ SemaphoreHandle_t uartSem = NULL;
 Fifo_t fifoBuffer;
 uint8_t uartData[MAX_CMD_SIZE] = {0};
 uint8_t uartFifoBuffer[MAX_CMD_SIZE] = {0};
+
+/*task arg*/
+uint8_t uartTaskArg = UART_TASK_ID;
 /******************************************************************************
  * Function Prototypes
  *******************************************************************************/
-static parserState_t uartParser(void);
+static void uartTask(void *pvParameters);
 static void uartTimerCb(TimerHandle_t xTimer);
+static parserState_t uartParser(void);
+static void uartParserRun(void);
 /******************************************************************************
  * Function Definitions
  *******************************************************************************/
@@ -159,6 +164,24 @@ void uart1Send(uint8_t *pData, uint16_t dataLength)
   }
 }
 /******************************************************************************
+ * @brief     uart task
+ * @param[out] pvParameters             event arg
+ * @return                              void
+ *******************************************************************************/
+static void uartTask(void *pvParameters)
+{
+	while(1)
+	{
+		if(!IsFifoEmpty(&fifoBuffer) && pdTRUE== xSemaphoreTake(uartSem, portMAX_DELAY))
+		{
+			// uint8_t data = FifoPop(&fifoBuffer);
+			// uart0Send(&data, 1);
+			uartParserRun();
+		}
+		taskYIELD ();
+	}
+}
+/******************************************************************************
  * @brief     uart timer callack after 2 second to flush fifo
  * @param[out] xTimer             		the pointer to the TimerHandle_t.
  * @return                              void
@@ -167,24 +190,27 @@ static void uartTimerCb(TimerHandle_t xTimer)
 {
   if(!IsFifoEmpty(&fifoBuffer))
   {
-    uint8_t indBuf[4];
+    uint8_t indBuf[6];
     FifoFlush(&fifoBuffer);
-    indBuf[0] = 0x86;
-    indBuf[1] = 0x00;
-    indBuf[2] = 0x01;
-    indBuf[3] = PARSER_TIMEOUT_FLUSH;
-    uart0Send(indBuf, 4);
+    indBuf[0] = 0xAA;	/*header*/
+    indBuf[1] = 0xBB;	/*header*/
+    indBuf[2] = UART_TASK_ID;	/*ID*/
+    indBuf[3] = 0x00;	/*size*/
+    indBuf[4] = 0x01;	/*size*/
+    indBuf[5] = PARSER_TIMEOUT_FLUSH;	/*parameter*/
+    uart0Send(indBuf, 6);
   }
 }
 /******************************************************************************
- * @brief     Init UartFifo and Semaphore
+ * @brief     Init uart task, timer, fifo and Semaphore
  * @return                              void
  *******************************************************************************/
-void uartBufferInit(void)
+void osUartInit(void)
 {
-  FifoInit(&fifoBuffer, uartFifoBuffer, MAX_CMD_SIZE);
+	FifoInit(&fifoBuffer, uartFifoBuffer, MAX_CMD_SIZE);
 	uartSem = xSemaphoreCreateCounting( 65535, 0 );
-  uartTimerHandle = xTimerCreate("uartTimer" /* The timer name. */,
+	xTaskCreate(uartTask, "peripheral", 256, (void *)&uartTaskArg, 2, NULL /*pxCreatedTask*/);
+	uartTimerHandle = xTimerCreate("uartTimer" /* The timer name. */,
 										2000 / portTICK_PERIOD_MS /*const TickType_t xTimerPeriodInTicks*/,
 										pdFALSE /*const UBaseType_t uxAutoReload, pdFALSE for on shot, pdTRUE for period*/,
 										NULL /*void * const pvTimerID*/,
@@ -194,7 +220,7 @@ void uartBufferInit(void)
  * @brief     run with timer check fifo state 
  * @return                              void
  *******************************************************************************/
-void uartParserRun(void)
+static void uartParserRun(void)
 {
   parserState_t status = PARSER_ERROR;
   /*timer start*/

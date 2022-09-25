@@ -50,8 +50,7 @@ typedef enum
 /******************************************************************************
  * Variables
  *******************************************************************************/
-extern SemaphoreHandle_t uartSem;
-extern Fifo_t fifoBuffer;
+
 /******************************************************************************
  * Function Prototypes
  *******************************************************************************/
@@ -59,8 +58,7 @@ void init_UART0(uint32_t baudRate);
 void uart0Send(uint8_t *pData, uint16_t dataLength);
 void init_UART1(uint32_t baudRate);
 void uart1Send(uint8_t *pData, uint16_t dataLength);
-void uartBufferInit(void);
-void uartParserRun(void);
+void osUartInit(void);
 #endif /*_OS_UART_H_*/
 
     /*************** END OF FUNCTIONS *********************************************/
