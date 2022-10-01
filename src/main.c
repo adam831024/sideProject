@@ -20,6 +20,7 @@
 #include "semphr.h"
 #include "task.h"
 #include "timers.h"
+#include "queue.h"
 
 /*Application include*/
 #include "osUart.h"
@@ -42,6 +43,9 @@
 /******************************************************************************
  * Module Variable Definitions
  *******************************************************************************/
+/*Queue osMessage*/
+QueueHandle_t osMessageQueue;
+
 /*timer*/
 TimerHandle_t stateCheckTimerHandle = NULL;
 
@@ -50,6 +54,7 @@ uint8_t mainTaskArg = MAIN_TASK_ID;
 /******************************************************************************
  * Function Prototypes
  *******************************************************************************/
+static void osMessageInit(void );
 static void init_HCLK(void);
 static void mainTask(void *pvParameters);
 static void stateCheckTimerCb(TimerHandle_t xTimer);
@@ -69,16 +74,69 @@ static void init_HCLK(void)
 	SYS_LockReg();
 }
 /******************************************************************************
+ * @brief     OS message Queue Sned
+ * @param[in] pData            	Data pointer
+ * @return                      void
+ *******************************************************************************/
+void osMessageSend(void *pData)
+{
+	xQueueSend( osMessageQueue, /* The handle of the queue. */
+				&pData, /* The address of the pointer that points to the buffer. */
+				portMAX_DELAY );
+}
+/******************************************************************************
+ * @brief     OS message Queue Initialize
+ * @return                              void
+ *******************************************************************************/
+static void osMessageInit(void )
+{
+	/* Create a queue that can hold a maximum of 10 pointers, in this case character pointers. */
+	osMessageQueue = xQueueCreate( 10, sizeof( char * ) );
+}
+/******************************************************************************
  * @brief     OS main task
  * @param[out] pvParameters             event arg
  * @return                              void
  *******************************************************************************/
 static void mainTask(void *pvParameters)
 {
+	void *pData = NULL;
+	uint16_t dataLen = 0;
 	while(1)
 	{
-		uart0Send((uint8_t*)(pvParameters), 1);
-		vTaskDelay(1000);
+		xQueueReceive( osMessageQueue, /* The handle of the queue. */
+        				&pData, /* Store the buffer’s address in pcReceivedString. */
+        				portMAX_DELAY );
+		if(pData)
+		{
+			osMsg_t* pBuf = (osMsg_t*) pData;
+			// dataLen = BUILD_UINT16(pData[1], pData[2])+3;
+			dataLen = BUILD_UINT16(pBuf->dataLen[0], pBuf->dataLen[1])+3;
+			uart0Send((uint8_t*)pBuf, dataLen);
+			switch (pBuf->eventID)
+			{
+				case MAIN_EVENT_1:
+				{
+					printf("1111");
+				}
+				break;
+				case MAIN_EVENT_2:
+				{
+					printf("2222");
+				}
+				break;
+				case MAIN_EVENT_3:
+				{
+					printf("3333");
+				}
+				break;
+				default:
+					break;
+			}
+			osFree(pData);
+		}
+		// uart0Send((uint8_t*)(pvParameters), 1);
+		// vTaskDelay(1000);
 		taskYIELD ();
 	}
 }
@@ -113,6 +171,7 @@ int main(int argc, char const *argv[])
 	init_UART0(115200);
 	uart0Send(tBuf, 6);
 	osUartInit();
+	osMessageInit();
 	stateCheckTimerHandle = xTimerCreate("stateCheck" /* The timer name. */,
 										1000 / portTICK_PERIOD_MS /*const TickType_t xTimerPeriodInTicks*/,
 										pdTRUE /*const UBaseType_t uxAutoReload, pdFALSE for on shot, pdTRUE for period*/,

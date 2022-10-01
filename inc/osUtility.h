@@ -27,7 +27,7 @@
 #define HI_UINT16(a) (((a) >> 8) & 0xFF)
 #define LO_UINT16(a) ((a) & 0xFF)
 #define BUILD_UINT16(hiByte, loByte) \
-          ((uint16)(((loByte) & 0x00FF) + (((hiByte) & 0x00FF) << 8)))
+          ((uint16_t)(((loByte) & 0x00FF) + (((hiByte) & 0x00FF) << 8)))
 /******************************************************************************
  * Configuration Constants
  *******************************************************************************/

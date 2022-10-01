@@ -209,7 +209,7 @@ void osUartInit(void)
 {
 	FifoInit(&fifoBuffer, uartFifoBuffer, MAX_CMD_SIZE);
 	uartSem = xSemaphoreCreateCounting( 65535, 0 );
-	xTaskCreate(uartTask, "peripheral", 256, (void *)&uartTaskArg, 2, NULL /*pxCreatedTask*/);
+	xTaskCreate(uartTask, "uartTask", 256, (void *)&uartTaskArg, 2, NULL /*pxCreatedTask*/);
 	uartTimerHandle = xTimerCreate("uartTimer" /* The timer name. */,
 										2000 / portTICK_PERIOD_MS /*const TickType_t xTimerPeriodInTicks*/,
 										pdFALSE /*const UBaseType_t uxAutoReload, pdFALSE for on shot, pdTRUE for period*/,
@@ -268,6 +268,7 @@ static parserState_t uartParser(void)
 {
 	uint16_t fifoCnt = 0;
 	uint16_t i = 0;
+	uint8_t *pData = NULL;
 RELOOP:
 	fifoCnt = FifoCount(&fifoBuffer);
 	if (fifoCnt < CMD_HEAD_LEN)
@@ -339,8 +340,13 @@ RELOOP:
 					return PARSER_CRASH; /*important error*/
 				}
 			}
-			// TODO:	nfAmzCmdHandler(&uartData[2], payLoadLen + 3); /*0x12 0x00 0x03 0x11 0x22 0x33*/
-      uart0Send(&uartData[2], payLoadLen + 3);
+      		// uart0Send(&uartData[2], payLoadLen + 3);
+			pData = (uint8_t*)osMalloc((payLoadLen + 3)* sizeof(uint8_t));
+			if(pData)
+			{
+				memcpy(pData, &uartData[2], payLoadLen + 3);
+	  			osMessageSend(pData);
+			}
 			fifoCnt = FifoCount(&fifoBuffer);
 			if (fifoCnt)
 			{
