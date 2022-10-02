@@ -1,5 +1,5 @@
 Dependencies for Project 'sideProject', Target 'Target 1': (DO NOT MODIFY !)
-F (.\src\main.c)(0x63386103)(-c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\inc -I.\FreeRTOS\inc -I.\FreeRTOS\port\RVDS\ARM_CM0-I C:\Users\vince\Desktop\sideProject\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Driver-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Include-D__UVISION_VERSION="516" -D_RTE_-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (.\src\main.c)(0x63391EC1)(-c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\inc -I.\FreeRTOS\inc -I.\FreeRTOS\port\RVDS\ARM_CM0-I C:\Users\vince\Desktop\sideProject\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Driver-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Include-D__UVISION_VERSION="516" -D_RTE_-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AEF5F2)
 I (C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Include\Nano100Series.h)(0x55C415C4)
 I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include\core_cm0.h)(0x55093C04)
@@ -45,7 +45,7 @@ I (.\inc\osUart.h)(0x6337F808)
 I (.\inc\fifo.h)(0x6337F808)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x55AEF5F2)
 I (.\inc\osUtility.h)(0x63380CAA)
-I (.\inc\main.h)(0x63386240)
+I (.\inc\main.h)(0x63391E44)
 F (.\src\osUart.c)(0x633861B6)(-c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\inc -I.\FreeRTOS\inc -I.\FreeRTOS\port\RVDS\ARM_CM0-I C:\Users\vince\Desktop\sideProject\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Driver-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Include-D__UVISION_VERSION="516" -D_RTE_-o .\objects\osuart.o --omf_browse .\objects\osuart.crf --depend .\objects\osuart.d)
 I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55AEF5F2)
 I (C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Include\Nano100Series.h)(0x55C415C4)
@@ -89,7 +89,7 @@ I (.\FreeRTOS\inc\task.h)(0x6337F807)
 I (.\FreeRTOS\inc\list.h)(0x6337F807)
 I (.\inc\fifo.h)(0x6337F808)
 I (C:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x55AEF5F2)
-I (.\inc\main.h)(0x63386240)
+I (.\inc\main.h)(0x63391E44)
 I (.\FreeRTOS\inc\timers.h)(0x6337F807)
 I (.\inc\osUart.h)(0x6337F808)
 F (.\src\osUtility.c)(0x6337F808)(-c --cpu Cortex-M0 -D__EVAL -g -O0 --apcs=interwork --split_sections -I.\inc -I.\FreeRTOS\inc -I.\FreeRTOS\port\RVDS\ARM_CM0-I C:\Users\vince\Desktop\sideProject\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Driver-I C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Include-D__UVISION_VERSION="516" -D_RTE_-o .\objects\osutility.o --omf_browse .\objects\osutility.crf --depend .\objects\osutility.d)

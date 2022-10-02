@@ -42,9 +42,13 @@ enum    /*TASK ID, for Task arg*/
 
 enum    /*mainEventID_t, for main Task Event*/
 {
-    MAIN_EVENT_1 = 0x01, 
-    MAIN_EVENT_2, 
-    MAIN_EVENT_3
+    EVENT_BLE_DEV_ADDR =        0x12, 
+    EVENT_BLE_DEV_FW_VER =      0x15, 
+    EVENT_BLE_DEV_ENABLE_ADV =  0x1b, 
+    
+    EVENT_BLE_DEV_RECV_DATA =   0x80, 
+    EVENT_BLE_DEV_STATE =       0x81,
+    EVENT_BLE_DEV_CONN_RSSI =   0x89,
 };
 
 typedef struct 

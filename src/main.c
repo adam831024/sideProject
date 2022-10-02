@@ -110,24 +110,38 @@ static void mainTask(void *pvParameters)
 		if(pData)
 		{
 			osMsg_t* pBuf = (osMsg_t*) pData;
-			// dataLen = BUILD_UINT16(pData[1], pData[2])+3;
 			dataLen = BUILD_UINT16(pBuf->dataLen[0], pBuf->dataLen[1])+3;
-			uart0Send((uint8_t*)pBuf, dataLen);
+			uart0Send((uint8_t*)pBuf, dataLen);	/*debug*/
 			switch (pBuf->eventID)
 			{
-				case MAIN_EVENT_1:
+				case EVENT_BLE_DEV_ADDR:	/*0x12*/
 				{
-					printf("1111");
+					uart0Send(&pBuf->eventID, 1);
 				}
 				break;
-				case MAIN_EVENT_2:
+				case EVENT_BLE_DEV_FW_VER:	/*0x15*/
 				{
-					printf("2222");
+					uart0Send(&pBuf->eventID, 1);
 				}
 				break;
-				case MAIN_EVENT_3:
+				case EVENT_BLE_DEV_ENABLE_ADV:	/*0x1b*/
 				{
-					printf("3333");
+					uart0Send(&pBuf->eventID, 1);
+				}
+				break;
+				case EVENT_BLE_DEV_RECV_DATA:	/*0x80*/
+				{
+					uart0Send(&pBuf->eventID, 1);
+				}
+				break;
+				case EVENT_BLE_DEV_STATE:	/*0x81*/
+				{
+					uart0Send(&pBuf->eventID, 1);
+				}
+				break;
+				case EVENT_BLE_DEV_CONN_RSSI:	/*0x89*/
+				{
+					uart0Send(&pBuf->eventID, 1);
 				}
 				break;
 				default:
