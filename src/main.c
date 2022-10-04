@@ -132,16 +132,21 @@ static void mainTask(void *pvParameters)
 				case EVENT_BLE_DEV_RECV_DATA:	/*0x80*/
 				{
 					uart0Send(&pBuf->eventID, 1);
+					GPIO_SetMode(PA, BIT12, GPIO_PMD_OUTPUT);
 				}
 				break;
 				case EVENT_BLE_DEV_STATE:	/*0x81*/
 				{
 					uart0Send(&pBuf->eventID, 1);
+					PA12 = 1 ;
 				}
 				break;
 				case EVENT_BLE_DEV_CONN_RSSI:	/*0x89*/
 				{
 					uart0Send(&pBuf->eventID, 1);
+					PA12 = 0;
+					// PA13 = 0;
+					// PA14 = 0;
 				}
 				break;
 				default:

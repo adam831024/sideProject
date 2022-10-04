@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: £gVision V5.16.0.0
 Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: aa aa, aa, LIC=----
+License Information: 1 vincentadam, 1, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.16.0.0
@@ -21,12 +21,19 @@ Target DLL:      Segger\JL2CM3.dll V2.99.15.2
 Dialog DLL:      TARMCM1.DLL V1.9.0.0
  
 <h2>Project:</h2>
-C:\Users\vince\Desktop\sideProject\sideProject.uvprojx
-Project File Date:  10/01/2022
+C:\Users\vincentadam\Desktop\sideProject\sideProject.uvprojx
+Project File Date:  10/03/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 (build 20)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Rebuild target 'Target 1'
+compiling fifo.c...
+compiling croutine.c...
+compiling list.c...
+compiling event_groups.c...
+compiling stream_buffer.c...
+compiling timers.c...
+compiling queue.c...
 compiling osUtility.c...
 src\osUtility.c(131): warning:  #223-D: function "pvPortMalloc" declared implicitly
       void *memory = (void *)pvPortMalloc(size);
@@ -42,27 +49,20 @@ src\osUart.c(344): warning:  #223-D: function "osMalloc" declared implicitly
 src\osUart.c(347): warning:  #223-D: function "memcpy" declared implicitly
   				memcpy(pData, &uartData[2], payLoadLen + 3);
 src\osUart.c: 2 warnings, 0 errors
-compiling fifo.c...
-compiling croutine.c...
-compiling event_groups.c...
-compiling list.c...
-compiling stream_buffer.c...
-compiling queue.c...
-compiling timers.c...
 compiling tasks.c...
-compiling port.c...
 compiling heap_4.c...
-compiling clk.c...
+compiling port.c...
 compiling gpio.c...
 compiling sys.c...
+compiling clk.c...
 compiling timer.c...
 compiling wdt.c...
-compiling uart.c...
 assembling startup_Nano100Series.s...
-compiling system_Nano100Series.c...
+compiling uart.c...
 compiling retarget.c...
+compiling system_Nano100Series.c...
 linking...
-Program Size: Code=12704 RO-data=312 RW-data=164 ZI-data=11076  
+Program Size: Code=12780 RO-data=312 RW-data=164 ZI-data=11076  
 ".\Objects\sideProject.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
@@ -81,12 +81,12 @@ Package Vendor: Nuvoton
    * Component: CLK Version: 3.01.000
    * Component: GPIO Version: 3.01.000
    * Component: WDT Version: 3.01.000
+   * Component: SYS Version: 3.01.000
    * Component: UART Version: 3.01.000
    * Component: Timer Version: 3.01.000
-   * Component: SYS Version: 3.01.000
 
 <h2>Collection of Component include folders:</h2>
-  C:\Users\vince\Desktop\sideProject\RTE
+  C:\Users\vincentadam\Desktop\sideProject\RTE
   C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include
   C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Driver
   C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Include
@@ -96,10 +96,10 @@ Package Vendor: Nuvoton
    * Component: ARM::CMSIS:CORE:4.1.0
 
    * Component: Nuvoton::Device:Startup:3.01.000
+      Source file:   Device\NANO100BN\Source\system_Nano100Series.c
       Include file:  Device\NANO100BN\Include\Nano100Series.h
       Source file:   Device\NANO100BN\Driver\retarget.c
       Source file:   Device\NANO100BN\Source\ARM\startup_Nano100Series.s
-      Source file:   Device\NANO100BN\Source\system_Nano100Series.c
 
    * Component: Nuvoton::Device:Driver:CLK:3.01.000
       Include file:  Device\NANO100BN\Driver\clk.h
@@ -110,21 +110,21 @@ Package Vendor: Nuvoton
       Source file:   Device\NANO100BN\Driver\gpio.c
 
    * Component: Nuvoton::Device:Driver:WDT:3.01.000
-      Source file:   Device\NANO100BN\Driver\wdt.c
       Include file:  Device\NANO100BN\Driver\wdt.h
+      Source file:   Device\NANO100BN\Driver\wdt.c
+
+   * Component: Nuvoton::Device:Driver:SYS:3.01.000
+      Include file:  Device\NANO100BN\Driver\sys.h
+      Source file:   Device\NANO100BN\Driver\sys.c
 
    * Component: Nuvoton::Device:Driver:UART:3.01.000
-      Source file:   Device\NANO100BN\Driver\uart.c
       Include file:  Device\NANO100BN\Driver\uart.h
+      Source file:   Device\NANO100BN\Driver\uart.c
 
    * Component: Nuvoton::Device:Driver:Timer:3.01.000
       Include file:  Device\NANO100BN\Driver\timer.h
       Source file:   Device\NANO100BN\Driver\timer.c
-
-   * Component: Nuvoton::Device:Driver:SYS:3.01.000
-      Source file:   Device\NANO100BN\Driver\sys.c
-      Include file:  Device\NANO100BN\Driver\sys.h
-Build Time Elapsed:  00:00:08
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
