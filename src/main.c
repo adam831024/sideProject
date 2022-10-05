@@ -25,6 +25,7 @@
 /*Application include*/
 #include "osUart.h"
 #include "osUtility.h"
+#include "osPeripheral.h"
 #include "fifo.h"
 #include "main.h"
 
@@ -132,7 +133,6 @@ static void mainTask(void *pvParameters)
 				case EVENT_BLE_DEV_RECV_DATA:	/*0x80*/
 				{
 					uart0Send(&pBuf->eventID, 1);
-					GPIO_SetMode(PA, BIT12, GPIO_PMD_OUTPUT);
 				}
 				break;
 				case EVENT_BLE_DEV_STATE:	/*0x81*/
@@ -145,8 +145,6 @@ static void mainTask(void *pvParameters)
 				{
 					uart0Send(&pBuf->eventID, 1);
 					PA12 = 0;
-					// PA13 = 0;
-					// PA14 = 0;
 				}
 				break;
 				default:
@@ -186,7 +184,8 @@ int main(int argc, char const *argv[])
 	taskENTER_CRITICAL();
 
 	init_HCLK();
-	SysTick_Config(SystemCoreClock / 1000);
+	osPeripheralInit();
+	// SysTick_Config(SystemCoreClock / 1000);
 	init_UART0(115200);
 	uart0Send(tBuf, 6);
 	osUartInit();

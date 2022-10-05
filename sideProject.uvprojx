@@ -436,6 +436,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\fifo.c</FilePath>
             </File>
+            <File>
+              <FileName>osPeripheral.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\osPeripheral.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -450,6 +455,26 @@
               <FileName>osUtility.h</FileName>
               <FileType>5</FileType>
               <FilePath>.\inc\osUtility.h</FilePath>
+            </File>
+            <File>
+              <FileName>fifo.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\fifo.h</FilePath>
+            </File>
+            <File>
+              <FileName>FreeRTOSConfig.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\FreeRTOSConfig.h</FilePath>
+            </File>
+            <File>
+              <FileName>main.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\main.h</FilePath>
+            </File>
+            <File>
+              <FileName>osPeripheral.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\inc\osPeripheral.h</FilePath>
             </File>
           </Files>
         </Group>

@@ -100,25 +100,6 @@ void delayMs(uint16_t ms)
     SysTick->CTRL = 0x00;
     SysTick->VAL = 0x00;
 }
-/******************************************************************************
- * DESCRIPTION: 
- *      send stack task data to another task
- * @param[in] src
- *      source task no.
- * @param[in] dest
- *      destination task no.
- * @param[in] pData
- *      data pointer
- * RETURNS: TRUE/FALSE 
-*******************************************************************************/
-bool osMessageSend(taskType_t src, taskType_t dest, void *pData)
-{
-    taskData_t *tBuf = (taskData_t *)osMalloc(sizeof(taskData_t));
-    tBuf->src = src;
-    tBuf->dest = dest;
-    tBuf->pData = pData;
-    return xQueueSendToBack(stackQueueHandle, tBuf, 0);
-}
 #endif
 /******************************************************************************
  * DESCRIPTION: malloc

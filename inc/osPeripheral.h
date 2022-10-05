@@ -2,19 +2,18 @@
  * Copyright (C)
  *
  * NAME:
- *		osUtility.h
+ *    osPeripheral.h
  * DESCRIPTION:
- *      header file of osUtility.c
+ *      header file of osPeripheral.c
 *******************************************************************************/
-#ifndef _OS_UTILITY_H_
-#define _OS_UTILITY_H_
+#ifndef _OS_PERIPHERAL_
+#define _OS_PERIPHERAL_
 
 /******************************************************************************
  * Includes
  *******************************************************************************/
 /*Standard include*/
 #include <stdint.h>
-#include <stdbool.h>
 
 /*Application include*/
 
@@ -24,10 +23,7 @@
 /**
  * This constant is
  */
-#define HI_UINT16(a) (((a) >> 8) & 0xFF)
-#define LO_UINT16(a) ((a) & 0xFF)
-#define BUILD_UINT16(hiByte, loByte) \
-          ((uint16_t)(((loByte) & 0x00FF) + (((hiByte) & 0x00FF) << 8)))
+
 /******************************************************************************
  * Configuration Constants
  *******************************************************************************/
@@ -47,13 +43,8 @@
 /******************************************************************************
  * Function Prototypes
  *******************************************************************************/
- #if 0
-void delayUs(uint16_t us);
-void delayMs(uint16_t ms);
-void delayInit(void);
-#endif
-void *osMalloc(uint16_t size);
-void osFree(void *ptr);
-#endif /*_OS_UTILITY_H_*/
+void osPeripheralInit(void);
+void osLcdPrint(uint8_t position, uint8_t *tBuf);
+#endif /*_OS_PERIPHERAL_*/
 
 /*************** END OF FUNCTIONS *********************************************/

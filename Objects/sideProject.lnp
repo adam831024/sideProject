@@ -3,6 +3,7 @@
 ".\objects\osuart.o"
 ".\objects\osutility.o"
 ".\objects\fifo.o"
+".\objects\osperipheral.o"
 ".\objects\croutine.o"
 ".\objects\event_groups.o"
 ".\objects\list.o"

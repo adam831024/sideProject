@@ -44,4 +44,5 @@
 .\objects\main.o: .\inc\fifo.h
 .\objects\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\main.o: .\inc\osUtility.h
+.\objects\main.o: .\inc\osPeripheral.h
 .\objects\main.o: .\inc\main.h
