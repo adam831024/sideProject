@@ -18,7 +18,8 @@
 #include "timers.h"
 
 /*Application include*/
-
+#include "main.h"
+#include "osUart.h"
 /******************************************************************************
  * Module Preprocessor Constants
  *******************************************************************************/
@@ -46,6 +47,7 @@ static void osRgbInit(void);
 static void osLcdInit(void);
 static void osLcdCmd(uint8_t cmd);
 static void osLcdPut(uint8_t word);
+static void osPeripheralCallback(osMsg_t* param);
 /******************************************************************************
  * Function Definitions
  *******************************************************************************/
@@ -129,8 +131,17 @@ static void osLcdInit(void)
   osLcdCmd(0x80);  
 
   /*clean the LCD*/
-  osLcdPrint(0x00, "       adam     ");
-  osLcdPrint(0x40, "                ");
+  osLcdPrint(0x00, "      Adam      "); /*16 words for a line*/
+  osLcdPrint(0x40, "   Initialize   ");
+}
+/******************************************************************************
+ * @brief     peripheral callback function
+ * @param[out] param                		
+ * @return  void
+ *******************************************************************************/
+static void osPeripheralCallback(osMsg_t* param)
+{
+  uart0Send("aaa", 3);
 }
 /******************************************************************************
  * @brief     Initialize RGB and LCD
@@ -144,5 +155,8 @@ void osPeripheralInit(void)
 
   /*LCD init*/
   osLcdInit();
+
+  /*register callback function*/
+  osPeripheralRegisterCb(osPeripheralCallback);
 }
 /*************** END OF FUNCTIONS *********************************************/

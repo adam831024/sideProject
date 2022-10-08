@@ -38,3 +38,9 @@
 .\objects\osperipheral.o: .\FreeRTOS\inc\timers.h
 .\objects\osperipheral.o: .\FreeRTOS\inc\task.h
 .\objects\osperipheral.o: .\FreeRTOS\inc\list.h
+.\objects\osperipheral.o: .\inc\main.h
+.\objects\osperipheral.o: .\FreeRTOS\inc\semphr.h
+.\objects\osperipheral.o: .\FreeRTOS\inc\queue.h
+.\objects\osperipheral.o: .\inc\osUart.h
+.\objects\osperipheral.o: .\inc\fifo.h
+.\objects\osperipheral.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h

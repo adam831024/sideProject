@@ -50,8 +50,14 @@ QueueHandle_t osMessageQueue;
 /*timer*/
 TimerHandle_t stateCheckTimerHandle = NULL;
 
+/*task*/
+ TaskHandle_t initTaskHandle = NULL;
+
 /*task arg*/
 uint8_t mainTaskArg = MAIN_TASK_ID;
+
+/*callback function*/
+osPeripheralCallback_t pOsPeripheralCb = NULL;
 /******************************************************************************
  * Function Prototypes
  *******************************************************************************/
@@ -82,8 +88,8 @@ static void init_HCLK(void)
 void osMessageSend(void *pData)
 {
 	xQueueSend( osMessageQueue, /* The handle of the queue. */
-				&pData, /* The address of the pointer that points to the buffer. */
-				portMAX_DELAY );
+							&pData, /* The address of the pointer that points to the buffer. */
+							portMAX_DELAY );
 }
 /******************************************************************************
  * @brief     OS message Queue Initialize
@@ -93,6 +99,14 @@ static void osMessageInit(void )
 {
 	/* Create a queue that can hold a maximum of 10 pointers, in this case character pointers. */
 	osMessageQueue = xQueueCreate( 10, sizeof( char * ) );
+}
+/******************************************************************************
+ * @brief     OS message Queue Initialize
+ * @return                              void
+ *******************************************************************************/
+void osPeripheralRegisterCb(osPeripheralCallback_t cbFunction)
+{
+	pOsPeripheralCb = cbFunction;
 }
 /******************************************************************************
  * @brief     OS main task
@@ -106,8 +120,8 @@ static void mainTask(void *pvParameters)
 	while(1)
 	{
 		xQueueReceive( osMessageQueue, /* The handle of the queue. */
-        				&pData, /* Store the buffer’s address in pcReceivedString. */
-        				portMAX_DELAY );
+										&pData, /* Store the buffer’s address in pcReceivedString. */
+										portMAX_DELAY );
 		if(pData)
 		{
 			osMsg_t* pBuf = (osMsg_t*) pData;
@@ -132,7 +146,10 @@ static void mainTask(void *pvParameters)
 				break;
 				case EVENT_BLE_DEV_RECV_DATA:	/*0x80*/
 				{
-					uart0Send(&pBuf->eventID, 1);
+					if(pOsPeripheralCb != NULL)
+					{
+						pOsPeripheralCb(pBuf);
+					}
 				}
 				break;
 				case EVENT_BLE_DEV_STATE:	/*0x81*/
@@ -177,14 +194,11 @@ static void stateCheckTimerCb(TimerHandle_t xTimer)
  * @param[out] pvParameters             event arg
  * @return                              void
  *******************************************************************************/
- TaskHandle_t initTaskHandle = NULL;
 static void initTask(void *pvParameters)
 {
 	uint8_t tBuf[] = {0xaa, 0xbb, MAIN_TASK_ID, 0x00, 0x01, 0x00};
 	taskENTER_CRITICAL();
 	
-
-	init_HCLK();
 	osPeripheralInit();
 	// SysTick_Config(SystemCoreClock / 1000);
 	init_UART0(115200);
@@ -198,9 +212,9 @@ static void initTask(void *pvParameters)
 										NULL /*void * const pvTimerID*/,
 										stateCheckTimerCb /*TimerCallbackFunction_t pxCallbackFunction*/);
 	xTaskCreate(mainTask, "mainTask", 256, (void *)&mainTaskArg, 2, NULL /*pxCreatedTask*/);
-
 	xTimerStart(stateCheckTimerHandle, 0);
 	vTaskDelete( initTaskHandle );
+
 	taskEXIT_CRITICAL();
 }
 /******************************************************************************
@@ -211,10 +225,8 @@ static void initTask(void *pvParameters)
  *******************************************************************************/
 int main(int argc, char const *argv[])
 {
-
+	init_HCLK();
 	xTaskCreate(initTask, "initTask", 256, NULL, 2, &initTaskHandle);
-	
-	
 	vTaskStartScheduler();
 	return 0;
 }

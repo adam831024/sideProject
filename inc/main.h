@@ -61,6 +61,7 @@ typedef struct
 /******************************************************************************
  * Typedefs
  *******************************************************************************/
+typedef void (*osPeripheralCallback_t)(osMsg_t* param);
 
 /******************************************************************************
  * Variables
@@ -70,6 +71,7 @@ typedef struct
  * Function Prototypes
  *******************************************************************************/
 void osMessageSend(void *pdata);
+void osPeripheralRegisterCb(osPeripheralCallback_t cbFunction);
 #endif /*_MAIN_H_*/
 
 /*************** END OF FUNCTIONS *********************************************/
