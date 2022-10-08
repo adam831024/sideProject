@@ -173,15 +173,16 @@ static void stateCheckTimerCb(TimerHandle_t xTimer)
 }
 
 /******************************************************************************
- * @brief     main
- * @param[out] argc                     is the link handle.
- * @param[out] argv                     the role type of the local device.
+ * @brief     OS main task
+ * @param[out] pvParameters             event arg
  * @return                              void
  *******************************************************************************/
-int main(int argc, char const *argv[])
+ TaskHandle_t initTaskHandle = NULL;
+static void initTask(void *pvParameters)
 {
 	uint8_t tBuf[] = {0xaa, 0xbb, MAIN_TASK_ID, 0x00, 0x01, 0x00};
 	taskENTER_CRITICAL();
+	
 
 	init_HCLK();
 	osPeripheralInit();
@@ -190,14 +191,30 @@ int main(int argc, char const *argv[])
 	uart0Send(tBuf, 6);
 	osUartInit();
 	osMessageInit();
+	
 	stateCheckTimerHandle = xTimerCreate("stateCheck" /* The timer name. */,
 										1000 / portTICK_PERIOD_MS /*const TickType_t xTimerPeriodInTicks*/,
 										pdTRUE /*const UBaseType_t uxAutoReload, pdFALSE for on shot, pdTRUE for period*/,
 										NULL /*void * const pvTimerID*/,
 										stateCheckTimerCb /*TimerCallbackFunction_t pxCallbackFunction*/);
 	xTaskCreate(mainTask, "mainTask", 256, (void *)&mainTaskArg, 2, NULL /*pxCreatedTask*/);
-	taskEXIT_CRITICAL();
+
 	xTimerStart(stateCheckTimerHandle, 0);
+	vTaskDelete( initTaskHandle );
+	taskEXIT_CRITICAL();
+}
+/******************************************************************************
+ * @brief     main
+ * @param[out] argc                     is the link handle.
+ * @param[out] argv                     the role type of the local device.
+ * @return                              void
+ *******************************************************************************/
+int main(int argc, char const *argv[])
+{
+
+	xTaskCreate(initTask, "initTask", 256, NULL, 2, &initTaskHandle);
+	
+	
 	vTaskStartScheduler();
 	return 0;
 }

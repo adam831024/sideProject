@@ -143,6 +143,6 @@ void osPeripheralInit(void)
   osRgbInit();
 
   /*LCD init*/
-  // osLcdInit();
+  osLcdInit();
 }
 /*************** END OF FUNCTIONS *********************************************/
