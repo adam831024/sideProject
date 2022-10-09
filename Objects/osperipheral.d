@@ -44,3 +44,4 @@
 .\objects\osperipheral.o: .\inc\osUart.h
 .\objects\osperipheral.o: .\inc\fifo.h
 .\objects\osperipheral.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\osperipheral.o: .\inc\osUtility.h

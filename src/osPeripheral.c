@@ -20,6 +20,7 @@
 /*Application include*/
 #include "main.h"
 #include "osUart.h"
+#include "osUtility.h"
 /******************************************************************************
  * Module Preprocessor Constants
  *******************************************************************************/
@@ -131,8 +132,8 @@ static void osLcdInit(void)
   osLcdCmd(0x80);  
 
   /*clean the LCD*/
-  osLcdPrint(0x00, "      Adam      "); /*16 words for a line*/
-  osLcdPrint(0x40, "   Initialize   ");
+  osLcdPrint(0x00, "   Adam Gooooo  "); /*16 words for a line*/
+  osLcdPrint(0x40, " Initialize OK  ");
 }
 /******************************************************************************
  * @brief     peripheral callback function
@@ -141,7 +142,79 @@ static void osLcdInit(void)
  *******************************************************************************/
 static void osPeripheralCallback(osMsg_t* param)
 {
-  uart0Send("aaa", 3);
+  // uint16_t len = BUILD_UINT16(param->dataLen[0], param->dataLen[1])+4; 
+  // uart0Send((uint8_t*)param, len);
+  switch(param->eventID)
+  {
+    case EVENT_BLE_DEV_ADDR:  /*0x12*/
+      break;
+    case EVENT_BLE_DEV_FW_VER:  /*0x15*/
+      break;
+    case EVENT_BLE_DEV_ENABLE_ADV:  /*0x1b*/
+      break;
+    case EVENT_BLE_DEV_RECV_DATA:  /*0x80*/
+      break;
+    case EVENT_BLE_DEV_STATE:  /*0x81*/
+    {
+      /*Dev:112233445566*/
+      /*rssi:-11,data:aa*/
+      switch(param->data[0])
+      {
+        case 0x02:  /*connected*/
+        {
+          PA12 = 1;
+          vTaskDelay(200);
+          PA12 = 0;
+          vTaskDelay(200);
+          PA12 = 1;
+          vTaskDelay(200);
+          PA12 = 0;
+        }
+        break;
+        case 0x03:  /*disconnect*/
+        {
+          PA12 = 1;
+          vTaskDelay(200);
+          PA12 = 0;
+          vTaskDelay(200);
+          PA12 = 1;
+          vTaskDelay(200);
+          PA12 = 0;
+        }
+        break;
+        default:
+          break;
+      }
+    }
+    break;
+    case EVENT_BLE_DEV_CONN_RSSI:  /*0x89*/
+    {
+      uint8_t rssi = 0;
+      rssi = param->data[0];
+      if(param->data[0]<0x30)
+      {
+        PA12 = 0;
+        PA13 = 0;
+        PA14 = 1;
+      }
+      else if(param->data[0]>=0x40 && param->data[0]<0x50) 
+      {
+        PA12 = 0;
+        PA13 = 1;
+        PA14 = 0;
+      }
+      else
+      {
+        PA12 = 1;
+        PA13 = 0;
+        PA14 = 0;
+      }
+      osLcdPrint(0x40, &rssi);
+    }
+    break;
+    default:
+      break;
+  }
 }
 /******************************************************************************
  * @brief     Initialize RGB and LCD

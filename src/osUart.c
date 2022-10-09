@@ -341,11 +341,12 @@ RELOOP:
 				}
 			}
       		// uart0Send(&uartData[2], payLoadLen + 3);
-			pData = (uint8_t*)osMalloc((payLoadLen + 3)* sizeof(uint8_t));
+			pData = (uint8_t*)osMalloc((payLoadLen + 4)* sizeof(uint8_t));
 			if(pData)
 			{
-				memcpy(pData, &uartData[2], payLoadLen + 3);
-	  			osMessageSend(pData);
+				pData[0] = OS_PERIPHERAL_HANDLER_ID;
+				memcpy(&pData[1], &uartData[2], payLoadLen + 3);
+				osMessageSend(pData);
 			}
 			fifoCnt = FifoCount(&fifoBuffer);
 			if (fifoCnt)

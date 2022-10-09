@@ -58,6 +58,7 @@ uint8_t mainTaskArg = MAIN_TASK_ID;
 
 /*callback function*/
 osPeripheralCallback_t pOsPeripheralCb = NULL;
+osOthersCallback_t pOsOthersCb = NULL;
 /******************************************************************************
  * Function Prototypes
  *******************************************************************************/
@@ -82,7 +83,7 @@ static void init_HCLK(void)
 }
 /******************************************************************************
  * @brief     OS message Queue Sned
- * @param[in] pData            	Data pointer
+ * @param[in] pData            	Data pointer, parser will follow osMsg_t
  * @return                      void
  *******************************************************************************/
 void osMessageSend(void *pData)
@@ -101,12 +102,20 @@ static void osMessageInit(void )
 	osMessageQueue = xQueueCreate( 10, sizeof( char * ) );
 }
 /******************************************************************************
- * @brief     OS message Queue Initialize
+ * @brief     register osPeripheral callback function
  * @return                              void
  *******************************************************************************/
 void osPeripheralRegisterCb(osPeripheralCallback_t cbFunction)
 {
 	pOsPeripheralCb = cbFunction;
+}
+/******************************************************************************
+ * @brief     register osOthers callback function
+ * @return                              void
+ *******************************************************************************/
+void osOthersRegisterCb(osOthersCallback_t cbFunction)
+{
+	pOsOthersCb = cbFunction;
 }
 /******************************************************************************
  * @brief     OS main task
@@ -124,27 +133,10 @@ static void mainTask(void *pvParameters)
 										portMAX_DELAY );
 		if(pData)
 		{
-			osMsg_t* pBuf = (osMsg_t*) pData;
-			dataLen = BUILD_UINT16(pBuf->dataLen[0], pBuf->dataLen[1])+3;
-			uart0Send((uint8_t*)pBuf, dataLen);	/*debug*/
-			switch (pBuf->eventID)
+			osMsg_t *pBuf = (osMsg_t*) pData;
+			switch (pBuf->taskID)
 			{
-				case EVENT_BLE_DEV_ADDR:	/*0x12*/
-				{
-					uart0Send(&pBuf->eventID, 1);
-				}
-				break;
-				case EVENT_BLE_DEV_FW_VER:	/*0x15*/
-				{
-					uart0Send(&pBuf->eventID, 1);
-				}
-				break;
-				case EVENT_BLE_DEV_ENABLE_ADV:	/*0x1b*/
-				{
-					uart0Send(&pBuf->eventID, 1);
-				}
-				break;
-				case EVENT_BLE_DEV_RECV_DATA:	/*0x80*/
+				case OS_PERIPHERAL_HANDLER_ID:	/*0x01*/
 				{
 					if(pOsPeripheralCb != NULL)
 					{
@@ -152,16 +144,12 @@ static void mainTask(void *pvParameters)
 					}
 				}
 				break;
-				case EVENT_BLE_DEV_STATE:	/*0x81*/
+				case OS_OTHERS_HANDLER_ID:	/*0x02*/
 				{
-					uart0Send(&pBuf->eventID, 1);
-					PA12 = 1 ;
-				}
-				break;
-				case EVENT_BLE_DEV_CONN_RSSI:	/*0x89*/
-				{
-					uart0Send(&pBuf->eventID, 1);
-					PA12 = 0;
+					if(pOsOthersCb != NULL)
+					{
+						pOsOthersCb(pBuf);
+					}
 				}
 				break;
 				default:
@@ -196,13 +184,11 @@ static void stateCheckTimerCb(TimerHandle_t xTimer)
  *******************************************************************************/
 static void initTask(void *pvParameters)
 {
-	uint8_t tBuf[] = {0xaa, 0xbb, MAIN_TASK_ID, 0x00, 0x01, 0x00};
 	taskENTER_CRITICAL();
 	
 	osPeripheralInit();
 	// SysTick_Config(SystemCoreClock / 1000);
 	init_UART0(115200);
-	uart0Send(tBuf, 6);
 	osUartInit();
 	osMessageInit();
 	
