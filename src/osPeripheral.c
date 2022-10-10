@@ -190,7 +190,9 @@ static void osPeripheralCallback(osMsg_t* param)
     case EVENT_BLE_DEV_CONN_RSSI:  /*0x89*/
     {
       uint8_t rssi = 0;
+      uint8_t rssiStr[2];
       rssi = param->data[0];
+      osLcdPrint(0x40, "rssi:-11,data:aa");
       if(param->data[0]<0x30)
       {
         PA12 = 0;
@@ -209,7 +211,8 @@ static void osPeripheralCallback(osMsg_t* param)
         PA13 = 0;
         PA14 = 0;
       }
-      osLcdPrint(0x40, &rssi);
+      sprintf(rssiStr, "%d", rssi);
+      osLcdPrint(0x46, rssiStr);
     }
     break;
     default:

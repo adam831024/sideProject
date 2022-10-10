@@ -28,9 +28,12 @@ Project File Date:  10/08/2022
 *** Using Compiler 'V5.06 (build 20)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
 compiling osPeripheral.c...
+src\osPeripheral.c(214): warning:  #223-D: function "sprintf" declared implicitly
+        sprintf(rssiStr, "%d", rssi);
+src\osPeripheral.c: 1 warning, 0 errors
 linking...
-Program Size: Code=13496 RO-data=312 RW-data=180 ZI-data=11076  
-".\Objects\sideProject.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=13740 RO-data=312 RW-data=180 ZI-data=11076  
+".\Objects\sideProject.axf" - 0 Error(s), 1 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -45,12 +48,12 @@ Package Vendor: Nuvoton
                 Nuvoton::Device:Startup:3.01.000
                 Nuvoton ARM Cortex-M NuMicro Family Device Support
    * Component: Startup Version: 3.01.000
-   * Component: GPIO Version: 3.01.000
    * Component: CLK Version: 3.01.000
-   * Component: Timer Version: 3.01.000
+   * Component: GPIO Version: 3.01.000
    * Component: UART Version: 3.01.000
    * Component: SYS Version: 3.01.000
    * Component: WDT Version: 3.01.000
+   * Component: Timer Version: 3.01.000
 
 <h2>Collection of Component include folders:</h2>
   C:\Users\vincentadam\Desktop\sideProject\RTE
@@ -63,22 +66,18 @@ Package Vendor: Nuvoton
    * Component: ARM::CMSIS:CORE:4.1.0
 
    * Component: Nuvoton::Device:Startup:3.01.000
-      Source file:   Device\NANO100BN\Source\system_Nano100Series.c
-      Source file:   Device\NANO100BN\Source\ARM\startup_Nano100Series.s
       Source file:   Device\NANO100BN\Driver\retarget.c
+      Source file:   Device\NANO100BN\Source\ARM\startup_Nano100Series.s
       Include file:  Device\NANO100BN\Include\Nano100Series.h
-
-   * Component: Nuvoton::Device:Driver:GPIO:3.01.000
-      Source file:   Device\NANO100BN\Driver\gpio.c
-      Include file:  Device\NANO100BN\Driver\gpio.h
+      Source file:   Device\NANO100BN\Source\system_Nano100Series.c
 
    * Component: Nuvoton::Device:Driver:CLK:3.01.000
-      Source file:   Device\NANO100BN\Driver\clk.c
       Include file:  Device\NANO100BN\Driver\clk.h
+      Source file:   Device\NANO100BN\Driver\clk.c
 
-   * Component: Nuvoton::Device:Driver:Timer:3.01.000
-      Include file:  Device\NANO100BN\Driver\timer.h
-      Source file:   Device\NANO100BN\Driver\timer.c
+   * Component: Nuvoton::Device:Driver:GPIO:3.01.000
+      Include file:  Device\NANO100BN\Driver\gpio.h
+      Source file:   Device\NANO100BN\Driver\gpio.c
 
    * Component: Nuvoton::Device:Driver:UART:3.01.000
       Include file:  Device\NANO100BN\Driver\uart.h
@@ -89,9 +88,13 @@ Package Vendor: Nuvoton
       Source file:   Device\NANO100BN\Driver\sys.c
 
    * Component: Nuvoton::Device:Driver:WDT:3.01.000
-      Source file:   Device\NANO100BN\Driver\wdt.c
       Include file:  Device\NANO100BN\Driver\wdt.h
-Build Time Elapsed:  00:00:01
+      Source file:   Device\NANO100BN\Driver\wdt.c
+
+   * Component: Nuvoton::Device:Driver:Timer:3.01.000
+      Source file:   Device\NANO100BN\Driver\timer.c
+      Include file:  Device\NANO100BN\Driver\timer.h
+Build Time Elapsed:  00:00:00
 </pre>
 </body>
 </html>
