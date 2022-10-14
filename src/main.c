@@ -125,7 +125,6 @@ void osOthersRegisterCb(osOthersCallback_t cbFunction)
 static void mainTask(void *pvParameters)
 {
 	void *pData = NULL;
-	uint16_t dataLen = 0;
 	while(1)
 	{
 		xQueueReceive( osMessageQueue, /* The handle of the queue. */

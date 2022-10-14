@@ -21,6 +21,7 @@
 #include "main.h"
 #include "osUart.h"
 #include "osUtility.h"
+#include "osPeripheral.h"
 /******************************************************************************
  * Module Preprocessor Constants
  *******************************************************************************/
@@ -146,22 +147,52 @@ static void osPeripheralCallback(osMsg_t* param)
   // uart0Send((uint8_t*)param, len);
   switch(param->eventID)
   {
-    case EVENT_BLE_DEV_ADDR:  /*0x12*/
-      break;
-    case EVENT_BLE_DEV_FW_VER:  /*0x15*/
-      break;
-    case EVENT_BLE_DEV_ENABLE_ADV:  /*0x1b*/
-      break;
+    case EVENT_BLE_DEV_LOCAL_ADDR:  /*0x12*/
+    {
+      eventDevLocalAddr_t *eventVal= (eventDevLocalAddr_t*)param->data;
+      uart0Send(eventVal->addr, 6);
+    }
+    break;
     case EVENT_BLE_DEV_RECV_DATA:  /*0x80*/
-      break;
+    {
+      eventDevRecvData_t *eventVal= (eventDevRecvData_t*)param->data;
+
+    }
+    break;
     case EVENT_BLE_DEV_STATE:  /*0x81*/
     {
+      eventDevState_t *eventVal= (eventDevState_t*)param->data;
       /*Dev:112233445566*/
       /*rssi:-11,data:aa*/
-      switch(param->data[0])
+      switch(eventVal->state)
       {
-        case 0x02:  /*connected*/
+        case INIT_FINISH:
         {
+          eventVal->stateParam.stateInit;
+        }
+        break;
+        case BLE_ADV_SCAN_ENABLE_DISABLE:
+        {
+          switch (eventVal->stateParam.stateAdvScan.param)
+          {
+            case BLE_ADV_DISABLE:
+              break;
+            case BLE_ADV_ENABLE:
+              break;
+            case BLE_SCAN_DISABLE:
+              break;
+            case BLE_SCAN_ENABLE:
+              break;
+            default:
+              break;
+          }
+        }
+        break;
+        case DEV_CONNECT: 
+        {
+          eventVal->stateParam.stateConn;
+          uart0Send(eventVal->stateParam.stateConn.addr, 6);
+          osLcdPrint(0x40, "rssi:-  ,data:aa");
           PA12 = 1;
           vTaskDelay(200);
           PA12 = 0;
@@ -171,8 +202,9 @@ static void osPeripheralCallback(osMsg_t* param)
           PA12 = 0;
         }
         break;
-        case 0x03:  /*disconnect*/
+        case DEV_DISCONNECT:
         {
+          eventVal->stateParam.stateDisconn;
           PA12 = 1;
           vTaskDelay(200);
           PA12 = 0;
@@ -189,10 +221,10 @@ static void osPeripheralCallback(osMsg_t* param)
     break;
     case EVENT_BLE_DEV_CONN_RSSI:  /*0x89*/
     {
-      uint8_t rssi = 0;
+      eventDevConnRssi_t *eventVal= (eventDevConnRssi_t*)param->data;
+      uint8_t rssi = eventVal->rssi;
       uint8_t rssiStr[2];
       rssi = param->data[0];
-      osLcdPrint(0x40, "rssi:-11,data:aa");
       if(param->data[0]<0x30)
       {
         PA12 = 0;
