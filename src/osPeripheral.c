@@ -80,7 +80,7 @@ static void osLcdCmd(uint8_t cmd)
   E=1; 
   vTaskDelay(10);
   E=0;
-  vTaskDelay(100);
+  vTaskDelay(50);
 }
 /******************************************************************************
  * @brief     LCD print a char without confirm position
@@ -96,7 +96,7 @@ static void osLcdPut(uint8_t word)
   E=1; 
   vTaskDelay(10);
   E=0;
-  vTaskDelay(100);
+  vTaskDelay(50);
 }
 /******************************************************************************
  * @brief     LCD print an array
@@ -143,6 +143,7 @@ static void osLcdInit(void)
  *******************************************************************************/
 static void osPeripheralCallback(osMsg_t* param)
 {
+  taskENTER_CRITICAL(); /*to fast lcd str print*/
   // uint16_t len = BUILD_UINT16(param->dataLen[0], param->dataLen[1])+4; 
   // uart0Send((uint8_t*)param, len);
   switch(param->eventID)
@@ -155,8 +156,11 @@ static void osPeripheralCallback(osMsg_t* param)
     break;
     case EVENT_BLE_DEV_RECV_DATA:  /*0x80*/
     {
+      uint8_t dataStr[2];
       eventDevRecvData_t *eventVal= (eventDevRecvData_t*)param->data;
-
+      sprintf(dataStr, "%02x", eventVal->data[0]);
+      osLcdPrint(0x4e, dataStr);
+      // uart0Send(eventVal->data, len-5);
     }
     break;
     case EVENT_BLE_DEV_STATE:  /*0x81*/
@@ -173,6 +177,13 @@ static void osPeripheralCallback(osMsg_t* param)
         break;
         case BLE_ADV_SCAN_ENABLE_DISABLE:
         {
+          PA12 = 1;
+          vTaskDelay(200);
+          PA12 = 0;
+          vTaskDelay(200);
+          PA12 = 1;
+          vTaskDelay(200);
+          PA12 = 0;
           switch (eventVal->stateParam.stateAdvScan.param)
           {
             case BLE_ADV_DISABLE:
@@ -190,9 +201,15 @@ static void osPeripheralCallback(osMsg_t* param)
         break;
         case DEV_CONNECT: 
         {
+          uint8_t addrStr[12];
+          uint8_t i = 0;
           eventVal->stateParam.stateConn;
           uart0Send(eventVal->stateParam.stateConn.addr, 6);
-          osLcdPrint(0x40, "rssi:-  ,data:aa");
+          osLcdPrint(0x00, "Dev:");
+          for(i =0 ; i<6;i++)
+            sprintf(&addrStr[i*2], "%02x", eventVal->stateParam.stateConn.addr[i]);
+          osLcdPrint(0x04, addrStr);
+          osLcdPrint(0x40, "rssi:-  ,data:  ");
           PA12 = 1;
           vTaskDelay(200);
           PA12 = 0;
@@ -204,7 +221,11 @@ static void osPeripheralCallback(osMsg_t* param)
         break;
         case DEV_DISCONNECT:
         {
-          eventVal->stateParam.stateDisconn;
+          uint8_t disconnReasonStr[2];
+          sprintf(disconnReasonStr, "%02x", eventVal->stateParam.stateDisconn.disconnReason);
+          osLcdPrint(0x00, "Discon rsn: 0x");
+          osLcdPrint(0x0e, disconnReasonStr);
+          osLcdPrint(0x40, "   Advertising  ");
           PA12 = 1;
           vTaskDelay(200);
           PA12 = 0;
@@ -224,14 +245,15 @@ static void osPeripheralCallback(osMsg_t* param)
       eventDevConnRssi_t *eventVal= (eventDevConnRssi_t*)param->data;
       uint8_t rssi = eventVal->rssi;
       uint8_t rssiStr[2];
-      rssi = param->data[0];
-      if(param->data[0]<0x30)
+      sprintf(rssiStr, "%d", rssi);
+      osLcdPrint(0x46, rssiStr);
+      if(rssi<0x30)
       {
         PA12 = 0;
         PA13 = 0;
         PA14 = 1;
       }
-      else if(param->data[0]>=0x40 && param->data[0]<0x50) 
+      else if(rssi>=0x40 && rssi<0x50) 
       {
         PA12 = 0;
         PA13 = 1;
@@ -243,13 +265,12 @@ static void osPeripheralCallback(osMsg_t* param)
         PA13 = 0;
         PA14 = 0;
       }
-      sprintf(rssiStr, "%d", rssi);
-      osLcdPrint(0x46, rssiStr);
     }
     break;
     default:
       break;
   }
+  taskEXIT_CRITICAL(); /*to fast lcd str print*/
 }
 /******************************************************************************
  * @brief     Initialize RGB and LCD

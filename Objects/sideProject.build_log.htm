@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: £gVision V5.16.0.0
 Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: aa aa, aa, LIC=----
+License Information: 1 vincentadam, 1, LIC=----
  
 Tool Versions:
 Toolchain:       MDK-Lite  Version: 5.16.0.0
@@ -21,27 +21,63 @@ Target DLL:      Segger\JL2CM3.dll V2.99.15.2
 Dialog DLL:      TARMCM1.DLL V1.9.0.0
  
 <h2>Project:</h2>
-C:\Users\vince\Desktop\sideProject\sideProject.uvprojx
-Project File Date:  10/15/2022
+C:\Users\vincentadam\Desktop\sideProject\sideProject.uvprojx
+Project File Date:  10/16/2022
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 (build 20)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
-Build target 'Target 1'
+Rebuild target 'Target 1'
+compiling fifo.c...
+compiling croutine.c...
+compiling event_groups.c...
+compiling list.c...
+compiling queue.c...
+compiling stream_buffer.c...
+compiling osUtility.c...
+src\osUtility.c(112): warning:  #223-D: function "pvPortMalloc" declared implicitly
+      void *memory = (void *)pvPortMalloc(size);
+src\osUtility.c(113): warning:  #223-D: function "memset" declared implicitly
+      memset(memory, 0, size);
+src\osUtility.c(127): warning:  #223-D: function "vPortFree" declared implicitly
+          vPortFree(ptr);
+src\osUtility.c: 3 warnings, 0 errors
 compiling osPeripheral.c...
-src\osPeripheral.c(158): warning:  #177-D: variable "eventVal" was declared but never referenced
-        eventDevRecvData_t *eventVal= (eventDevRecvData_t*)param->data;
-src\osPeripheral.c(171): warning:  #174-D: expression has no effect
+src\osPeripheral.c(161): warning:  #223-D: function "sprintf" declared implicitly
+        sprintf(dataStr, "%02x", eventVal->data[0]);
+src\osPeripheral.c(175): warning:  #174-D: expression has no effect
             eventVal->stateParam.stateInit;
-src\osPeripheral.c(193): warning:  #174-D: expression has no effect
+src\osPeripheral.c(206): warning:  #174-D: expression has no effect
             eventVal->stateParam.stateConn;
-src\osPeripheral.c(207): warning:  #174-D: expression has no effect
-            eventVal->stateParam.stateDisconn;
-src\osPeripheral.c(246): warning:  #223-D: function "sprintf" declared implicitly
+src\osPeripheral.c(210): warning:  #223-D: function "sprintf" declared implicitly
+              sprintf(&addrStr[i*2], "%02x", eventVal->stateParam.stateConn.addr[i]);
+src\osPeripheral.c(225): warning:  #223-D: function "sprintf" declared implicitly
+            sprintf(disconnReasonStr, "%02x", eventVal->stateParam.stateDisconn.disconnReason);
+src\osPeripheral.c(248): warning:  #223-D: function "sprintf" declared implicitly
         sprintf(rssiStr, "%d", rssi);
-src\osPeripheral.c: 5 warnings, 0 errors
+src\osPeripheral.c: 6 warnings, 0 errors
+compiling main.c...
+compiling osUart.c...
+src\osUart.c(344): warning:  #223-D: function "osMalloc" declared implicitly
+  			pData = (uint8_t*)osMalloc((payLoadLen + 4)* sizeof(uint8_t));
+src\osUart.c(348): warning:  #223-D: function "memcpy" declared implicitly
+  				memcpy(&pData[1], &uartData[2], payLoadLen + 3);
+src\osUart.c: 2 warnings, 0 errors
+compiling timers.c...
+compiling heap_4.c...
+compiling port.c...
+compiling tasks.c...
+compiling sys.c...
+compiling clk.c...
+compiling gpio.c...
+compiling timer.c...
+compiling uart.c...
+compiling wdt.c...
+compiling retarget.c...
+assembling startup_Nano100Series.s...
+compiling system_Nano100Series.c...
 linking...
-Program Size: Code=13792 RO-data=312 RW-data=180 ZI-data=11076  
-".\Objects\sideProject.axf" - 0 Error(s), 5 Warning(s).
+Program Size: Code=14108 RO-data=332 RW-data=180 ZI-data=11076  
+".\Objects\sideProject.axf" - 0 Error(s), 11 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -58,13 +94,13 @@ Package Vendor: Nuvoton
    * Component: Startup Version: 3.01.000
    * Component: CLK Version: 3.01.000
    * Component: GPIO Version: 3.01.000
-   * Component: WDT Version: 3.01.000
    * Component: SYS Version: 3.01.000
    * Component: Timer Version: 3.01.000
+   * Component: WDT Version: 3.01.000
    * Component: UART Version: 3.01.000
 
 <h2>Collection of Component include folders:</h2>
-  C:\Users\vince\Desktop\sideProject\RTE
+  C:\Users\vincentadam\Desktop\sideProject\RTE
   C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.3.0\CMSIS\Include
   C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Driver
   C:\Keil_v5\ARM\PACK\Nuvoton\NuMicro_DFP\1.0.7\Device\NANO100BN\Include
@@ -74,10 +110,10 @@ Package Vendor: Nuvoton
    * Component: ARM::CMSIS:CORE:4.1.0
 
    * Component: Nuvoton::Device:Startup:3.01.000
-      Include file:  Device\NANO100BN\Include\Nano100Series.h
+      Source file:   Device\NANO100BN\Driver\retarget.c
       Source file:   Device\NANO100BN\Source\ARM\startup_Nano100Series.s
       Source file:   Device\NANO100BN\Source\system_Nano100Series.c
-      Source file:   Device\NANO100BN\Driver\retarget.c
+      Include file:  Device\NANO100BN\Include\Nano100Series.h
 
    * Component: Nuvoton::Device:Driver:CLK:3.01.000
       Include file:  Device\NANO100BN\Driver\clk.h
@@ -87,22 +123,22 @@ Package Vendor: Nuvoton
       Include file:  Device\NANO100BN\Driver\gpio.h
       Source file:   Device\NANO100BN\Driver\gpio.c
 
-   * Component: Nuvoton::Device:Driver:WDT:3.01.000
-      Source file:   Device\NANO100BN\Driver\wdt.c
-      Include file:  Device\NANO100BN\Driver\wdt.h
-
    * Component: Nuvoton::Device:Driver:SYS:3.01.000
-      Source file:   Device\NANO100BN\Driver\sys.c
       Include file:  Device\NANO100BN\Driver\sys.h
+      Source file:   Device\NANO100BN\Driver\sys.c
 
    * Component: Nuvoton::Device:Driver:Timer:3.01.000
-      Include file:  Device\NANO100BN\Driver\timer.h
       Source file:   Device\NANO100BN\Driver\timer.c
+      Include file:  Device\NANO100BN\Driver\timer.h
+
+   * Component: Nuvoton::Device:Driver:WDT:3.01.000
+      Include file:  Device\NANO100BN\Driver\wdt.h
+      Source file:   Device\NANO100BN\Driver\wdt.c
 
    * Component: Nuvoton::Device:Driver:UART:3.01.000
       Include file:  Device\NANO100BN\Driver\uart.h
       Source file:   Device\NANO100BN\Driver\uart.c
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>
