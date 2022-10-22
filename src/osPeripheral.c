@@ -187,13 +187,25 @@ static void osPeripheralCallback(osMsg_t* param)
           switch (eventVal->stateParam.stateAdvScan.param)
           {
             case BLE_ADV_DISABLE:
-              break;
+            {
+              osLcdPrint(0x40, "  BLE Ready ^U^ ");
+            }
+            break;
             case BLE_ADV_ENABLE:
-              break;
+            {
+              osLcdPrint(0x40, "   Advertising  ");
+            }
+            break;
             case BLE_SCAN_DISABLE:
-              break;
+            {
+              osLcdPrint(0x40, "  BLE Ready ^U^ ");
+            }
+            break;
             case BLE_SCAN_ENABLE:
-              break;
+            {
+              osLcdPrint(0x40, "  BLE Scanning   ");
+            }
+            break;
             default:
               break;
           }
@@ -210,13 +222,6 @@ static void osPeripheralCallback(osMsg_t* param)
             sprintf(&addrStr[i*2], "%02x", eventVal->stateParam.stateConn.addr[i]);
           osLcdPrint(0x04, addrStr);
           osLcdPrint(0x40, "rssi:-  ,data:  ");
-          PA12 = 1;
-          vTaskDelay(200);
-          PA12 = 0;
-          vTaskDelay(200);
-          PA12 = 1;
-          vTaskDelay(200);
-          PA12 = 0;
         }
         break;
         case DEV_DISCONNECT:
@@ -225,14 +230,9 @@ static void osPeripheralCallback(osMsg_t* param)
           sprintf(disconnReasonStr, "%02x", eventVal->stateParam.stateDisconn.disconnReason);
           osLcdPrint(0x00, "Discon rsn: 0x");
           osLcdPrint(0x0e, disconnReasonStr);
-          osLcdPrint(0x40, "   Advertising  ");
-          PA12 = 1;
-          vTaskDelay(200);
           PA12 = 0;
-          vTaskDelay(200);
-          PA12 = 1;
-          vTaskDelay(200);
-          PA12 = 0;
+          PA13 = 0;
+          PA14 = 0;
         }
         break;
         default:
@@ -247,13 +247,13 @@ static void osPeripheralCallback(osMsg_t* param)
       uint8_t rssiStr[2];
       sprintf(rssiStr, "%d", rssi);
       osLcdPrint(0x46, rssiStr);
-      if(rssi<0x30)
+      if(rssi < 55)
       {
         PA12 = 0;
         PA13 = 0;
         PA14 = 1;
       }
-      else if(rssi>=0x40 && rssi<0x50) 
+      else if(rssi>=55 && rssi<73) 
       {
         PA12 = 0;
         PA13 = 1;
