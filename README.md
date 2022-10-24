@@ -15,7 +15,7 @@ Chip: Infineon CYW20706
 ### Describe: 
 
 BLE advertising  
-![System Scenario](https://github.com/adam831024/sideProject/blob/main/sideProject.jpg)
+
 BLE connected
 
 BLE and Phone Distance close  
@@ -25,4 +25,4 @@ BLE and Phone Distance medium
 BLE and Phone Distance far  
 
 BLE disconnect  
-![disconnect](https://drive.google.com/file/d/1mXLfJcYoZeu6axTiZ_rvvdHUgN6nJ0ul/view?usp=sharing)
+
