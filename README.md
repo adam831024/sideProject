@@ -15,14 +15,12 @@ Chip: Infineon CYW20706
 ### Describe: 
 
 BLE advertising  
-
-BLE connected
-
-BLE and Phone Distance close  
-
-BLE and Phone Distance medium  
-
-BLE and Phone Distance far  
-
+![advertising](https://github.com/adam831024/sideProject/blob/main/picture/adv.jpg)
+BLE connected, GATT transmit data,  
+![connected](https://github.com/adam831024/sideProject/blob/main/picture/close.jpg)
+BLE and Phone Distance: medium  
+![medium](https://github.com/adam831024/sideProject/blob/main/picture/medium.jpg)
+BLE and Phone Distance: far  
+![far](https://github.com/adam831024/sideProject/blob/main/picture/far.jpg)
 BLE disconnect  
-
+![disconnect](https://github.com/adam831024/sideProject/blob/main/picture/disconnect.jpg)
