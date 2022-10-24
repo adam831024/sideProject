@@ -9,7 +9,6 @@ IDE: ModusToolBox 2.4
 Chip: Infineon CYW20706
 
 ### System Scenario:
-![System Scenario](https://github.com/adam831024/FreeRTOS/blob/main/Nuvoton%20NANO100KE3BN.drawio.png)
 
 ### Describe: 
 StateCheck Task: check system state every second by timer  
