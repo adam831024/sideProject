@@ -16,11 +16,11 @@ Chip: Infineon CYW20706
 
 BLE advertising  
 ![advertising](https://github.com/adam831024/sideProject/blob/main/picture/adv.jpg)
-BLE connected, GATT transmit data,  
+BLE connected, GATT transmit data, RGB Blue  
 ![connected](https://github.com/adam831024/sideProject/blob/main/picture/close.jpg)
-BLE and Phone Distance: medium  
+BLE and Phone Distance: medium, RGB Green    
 ![medium](https://github.com/adam831024/sideProject/blob/main/picture/medium.jpg)
-BLE and Phone Distance: far  
+BLE and Phone Distance: far, GRB Red    
 ![far](https://github.com/adam831024/sideProject/blob/main/picture/far.jpg)
 BLE disconnect  
 ![disconnect](https://github.com/adam831024/sideProject/blob/main/picture/disconnect.jpg)
