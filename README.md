@@ -11,6 +11,6 @@ IDE: ModusToolBox 2.4
 Chip: Infineon CYW20706  
 
 ### System Scenario:
-https://github.com/adam831024/sideProject/blob/main/sideProject.jpg
+![System Scenario](https://github.com/adam831024/sideProject/blob/main/sideProject.jpg)
 ### Describe: 
 
