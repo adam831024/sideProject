@@ -1,5 +1,5 @@
 # sideProject
-### Component:
+## Component:
 MCU:  
 OS: FreeRTOS  
 IDE: keil DMK 5.16  
@@ -10,21 +10,21 @@ OS: Infineon OS
 IDE: ModusToolBox 2.4  
 Chip: Infineon CYW20706  
 
-### System Scenario:
+## System Scenario:
 ![System Scenario](https://github.com/adam831024/sideProject/blob/main/picture/sideProject.jpg)
-### Describe: 
+## Describe: 
 
-BLE advertising  
+### 1.BLE advertising  
 ![advertising](https://github.com/adam831024/sideProject/blob/main/picture/adv.jpg)
 
-BLE connected, GATT transmit data, RGB Blue  
+### 2.BLE connected, GATT transmit data, RGB Blue  
 ![connected](https://github.com/adam831024/sideProject/blob/main/picture/close.jpg)
 
-BLE and Phone Distance: medium, RGB Green    
+### 3.BLE and Phone Distance: medium, RGB Green    
 ![medium](https://github.com/adam831024/sideProject/blob/main/picture/medium.jpg)
 
-BLE and Phone Distance: far, GRB Red    
+### 4.BLE and Phone Distance: far, GRB Red    
 ![far](https://github.com/adam831024/sideProject/blob/main/picture/far.jpg)
 
-BLE disconnect  
+### 5.BLE disconnect  
 ![disconnect](https://github.com/adam831024/sideProject/blob/main/picture/disconnect.jpg)
