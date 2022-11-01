@@ -1,4 +1,6 @@
 # sideProject
+Get the RSSI after phone and BLE module are connected.   
+Pass RSSI to MCU to control LCD and RGB.
 ## Component:
 **MCU:**  
 OS: FreeRTOS  
