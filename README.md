@@ -10,7 +10,7 @@ OS: Infineon OS
 IDE: ModusToolBox 2.4  
 Chip: Infineon CYW20706  
 
-## System Scenario:
+## System Architecture
 ![System Scenario](https://github.com/adam831024/sideProject/blob/main/picture/sideProject.jpg)
 ## Describe: 
 
